@@ -323,7 +323,7 @@
             this.SubfolderCountTextBox.Size = new System.Drawing.Size(78, 23);
             this.SubfolderCountTextBox.TabIndex = 27;
             this.SubfolderCountTextBox.TabStop = false;
-            this.SubfolderCountTextBox.Text = "100000";
+            this.SubfolderCountTextBox.Text = "0";
             this.SubfolderCountTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.SubfolderCountTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SubfolderCountTextBox_KeyPress);
             // 
@@ -421,7 +421,7 @@
             this.FilenameDisplayBox.Enabled = false;
             this.FilenameDisplayBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FilenameDisplayBox.ForeColor = System.Drawing.Color.Black;
-            this.FilenameDisplayBox.Location = new System.Drawing.Point(12, 482);
+            this.FilenameDisplayBox.Location = new System.Drawing.Point(12, 480);
             this.FilenameDisplayBox.MaxLength = 9999999;
             this.FilenameDisplayBox.Name = "FilenameDisplayBox";
             this.FilenameDisplayBox.ReadOnly = true;

@@ -50,6 +50,7 @@
             this.FilenameListbox.Name = "FilenameListbox";
             this.FilenameListbox.Size = new System.Drawing.Size(197, 274);
             this.FilenameListbox.TabIndex = 0;
+            this.FilenameListbox.ThreeDCheckBoxes = true;
             // 
             // FoldernameListbox
             // 
@@ -61,6 +62,7 @@
             this.FoldernameListbox.Name = "FoldernameListbox";
             this.FoldernameListbox.Size = new System.Drawing.Size(197, 274);
             this.FoldernameListbox.TabIndex = 1;
+            this.FoldernameListbox.ThreeDCheckBoxes = true;
             // 
             // TextColumnListbox
             // 
@@ -72,6 +74,7 @@
             this.TextColumnListbox.Name = "TextColumnListbox";
             this.TextColumnListbox.Size = new System.Drawing.Size(197, 274);
             this.TextColumnListbox.TabIndex = 2;
+            this.TextColumnListbox.ThreeDCheckBoxes = true;
             // 
             // label1
             // 
@@ -156,7 +159,7 @@
             this.Controls.Add(this.TextColumnListbox);
             this.Controls.Add(this.FoldernameListbox);
             this.Controls.Add(this.FilenameListbox);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(697, 456);
             this.MinimumSize = new System.Drawing.Size(697, 456);

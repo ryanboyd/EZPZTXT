@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "EZPZTXT Installer", "EZPZTXT Installer\EZPZTXT Installer.vdproj", "{08FD3972-4321-48E7-9C65-6EAC19BA863F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{08FD3972-4321-48E7-9C65-6EAC19BA863F}.Debug|Default.ActiveCfg = Debug
+		{08FD3972-4321-48E7-9C65-6EAC19BA863F}.Debug|Default.Build.0 = Debug
+		{08FD3972-4321-48E7-9C65-6EAC19BA863F}.Release|Default.ActiveCfg = Release
+		{08FD3972-4321-48E7-9C65-6EAC19BA863F}.Release|Default.Build.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -91,15 +91,16 @@ namespace EZPZTXT
 
                 //validate the subfolder numbers
                 ulong temp_number;
-                if (!ulong.TryParse(SubfolderCountTextBox.Text, out temp_number) || temp_number < 1)
+                if (!ulong.TryParse(SubfolderCountTextBox.Text, out temp_number) || temp_number < 0)
                 {
                     MessageBox.Show("Your \"New Subfolder\" number does not appear to be a valid entry." + "\r\n" +
-                                "Please review and revise your entry to make it a whole number >= 1.", "Subfolder Creation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                "Please review and revise your entry to make it a whole number >= 0." + "\r\n" +
+                                "Note that a value of 0 will disable this feature.", "Subfolder Creation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                
 
-                this.Hide();
+
+                this.Enabled = false;
 
                 var result = ColumnChooser.ShowDialog();
 
@@ -159,7 +160,7 @@ namespace EZPZTXT
 
             }
 
-            this.Show();
+            this.Enabled = true;
            
         }
 
@@ -193,8 +194,12 @@ namespace EZPZTXT
 
                     FilenameDisplayBox.Text = InputFile;
 
+                    FilenameDisplayBox.Focus();
+                    // Move the caret to the end of the text box
+                    FilenameDisplayBox.Select(FilenameDisplayBox.Text.Length, 0);
 
-                    BgWorkerInformation BgData = new BgWorkerInformation();
+
+                BgWorkerInformation BgData = new BgWorkerInformation();
 
                     BgData.InputFile = FilenameDisplayBox.Text;
                     BgData.HasHeaders = HeaderRowDropdown.SelectedItem.ToString();
@@ -206,6 +211,8 @@ namespace EZPZTXT
             else
             {
                 FilenameDisplayBox.Text = "No file selected...";
+                StartButton.Enabled = false;
+                ReloadCSVButton.Enabled = false;
             }
         }
 
@@ -606,11 +613,14 @@ namespace EZPZTXT
 
 
                     //make sure that we append our folder number
-                    OutputFileLocation = Path.Combine(OutputFileLocation, "Pt_" + (FolderNumber).ToString());
+                    //...assuming that we're actually using subfolders
+                    if (BgData.NewSubfolderNumber > 0) { 
+                        OutputFileLocation = Path.Combine(OutputFileLocation, "Pt_" + (FolderNumber).ToString());
 
-                    if (LineNumber % BgData.NewSubfolderNumber == 0)
-                    {
-                        FolderNumber++;
+                        if (LineNumber % BgData.NewSubfolderNumber == 0)
+                        {
+                            FolderNumber++;
+                        }
                     }
 
 
