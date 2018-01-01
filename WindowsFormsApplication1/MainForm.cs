@@ -608,7 +608,9 @@ namespace EZPZTXT
 
                     for (int i = 0; i < BgData.FolderCols.Length; i++)
                     {
-                        OutputFileLocation = Path.Combine(OutputFileLocation, fields[BgData.FolderCols[i]]);
+                        string subfolder = fields[BgData.FolderCols[i]];
+                        foreach (var c in Path.GetInvalidFileNameChars()) { subfolder = subfolder.Replace(c, '_'); }
+                        OutputFileLocation = Path.Combine(OutputFileLocation, subfolder);
                     }
 
 
@@ -628,17 +630,20 @@ namespace EZPZTXT
                     try
                     {
 
-                        if (BgData.AutofixFilenames)
-                        {
-                            foreach (var c in Path.GetInvalidPathChars()) { OutputFileLocation = OutputFileLocation.Replace(c, '_'); }
-                        }
+                        //this actually doesn't work as well as one would hope. it won't catch things like ":" because, technically,
+                        //colons are valid path characters for drive separators (e.g., C:\). Keeping the code here for now, but moved
+                        //the validation to earlier using invalid filename chars
+                        //if (BgData.AutofixFilenames)
+                        //{
+                        //    foreach (var c in Path.GetInvalidPathChars()) { OutputFileLocation = OutputFileLocation.Replace(c, '_'); }
+                        //}
 
                         System.IO.Directory.CreateDirectory(OutputFileLocation);
                     }
                     catch
                     {
                         MessageBox.Show("EZPZTXT could not create your output folder:\r\n\r\n" + OutputFileLocation + "\r\n\r\n" +
-                           " Is your output directory write protected? Is your folder name valid? Is the folder name too long?");
+                           "Is your output directory write protected? Is your folder name valid? Is the folder name too long?");
                             e.Cancel = true;
                             break;
                     }
