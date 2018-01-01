@@ -609,7 +609,13 @@ namespace EZPZTXT
                     for (int i = 0; i < BgData.FolderCols.Length; i++)
                     {
                         string subfolder = fields[BgData.FolderCols[i]];
-                        foreach (var c in Path.GetInvalidFileNameChars()) { subfolder = subfolder.Replace(c, '_'); }
+
+                        if (BgData.AutofixFilenames)
+                        {
+                            foreach (var c in Path.GetInvalidFileNameChars()) { subfolder = subfolder.Replace(c, '_'); }
+                            subfolder = subfolder.Replace('.', '_');
+                        }
+
                         OutputFileLocation = Path.Combine(OutputFileLocation, subfolder);
                     }
 
@@ -642,10 +648,19 @@ namespace EZPZTXT
                     }
                     catch
                     {
-                        MessageBox.Show("EZPZTXT could not create your output folder:\r\n\r\n" + OutputFileLocation + "\r\n\r\n" +
-                           "Is your output directory write protected? Is your folder name valid? Is the folder name too long?");
+                        DialogResult result = MessageBox.Show("EZPZTXT could not create your output folder:\r\n\r\n" + OutputFileLocation + "\r\n\r\n" +
+                           "Check to ensure that your output directory is not write protected / the folder name is not too long. " +
+                           "Additionally, check to ensure that your folder name is valid for your operating system." + "\r\n" +
+                           "Would you like to cancel the process?", "Create directory error", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+
+                        if (result == DialogResult.Yes) { 
                             e.Cancel = true;
                             break;
+                        }
+                        else
+                        {
+                            continue;
+                        }
                     }
 
 
@@ -689,11 +704,20 @@ namespace EZPZTXT
                          
                     catch
                     {
-                        MessageBox.Show("EZPZTXT could not create your output file:\r\n\r\n" + OutputFile + "\r\n\r\n" +
-                           "Is your output directory/file write protected? Is your filename valid? Is the folder+filename too long?");
-                        e.Cancel = true;
-                        break;
-                    }
+                            DialogResult result = MessageBox.Show("EZPZTXT could not create your output file:\r\n\r\n" + OutputFile + "\r\n\r\n" +
+                           "Check to ensure that your output directory/file is not write protected / the folder+filename is not too long. " + 
+                           "Additionally, check to ensure that your filename is valid for your operating system." + "\r\n\r\n" +
+                           "Would you like to cancel the process?", "Write file error", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+                            if (result == DialogResult.Yes)
+                            {
+                                e.Cancel = true;
+                                break;
+                            }
+                            else
+                            {
+                                continue;
+                            }
+                        }
 
                 }
 
@@ -703,7 +727,10 @@ namespace EZPZTXT
 
                     
 
-
+                    if (e.Cancel)
+                    {
+                        break;
+                    }
 
 
 
@@ -721,7 +748,7 @@ namespace EZPZTXT
         private void BgWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             EnableButtons();
-            FilenameLabel.Text = "Finished!   :)";
+            FilenameLabel.Text = "Finished!  :)";
             MessageBox.Show("EZPZTXT has finished writing your .txt files!", "Analysis Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
