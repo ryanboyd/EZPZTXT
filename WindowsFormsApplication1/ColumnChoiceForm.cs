@@ -70,6 +70,17 @@ namespace EZPZTXT
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
+
+
+
+
         
+
+
+
+
+
+
+
     }
 }
