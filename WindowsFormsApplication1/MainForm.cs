@@ -36,14 +36,8 @@ namespace EZPZTXT
             }
 
             
-            try
-            {
-                EncodingDropdown.SelectedIndex = EncodingDropdown.FindStringExact("utf-8");
-            }
-            catch
-            {
-                EncodingDropdown.SelectedIndex = EncodingDropdown.FindStringExact(Encoding.Default.BodyName);
-            }
+            EncodingDropdown.SelectedIndex = EncodingDropdown.FindStringExact(Encoding.Default.BodyName);
+            
 
 
             EnclosedInQuotesDropdown.SelectedIndex = 0;
