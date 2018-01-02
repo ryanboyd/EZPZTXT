@@ -46,7 +46,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(190, 24);
             this.label1.TabIndex = 1;
-            this.label1.Text = "EZPZTXT (v0.92)";
+            this.label1.Text = "EZPZTXT (v0.98)";
             this.label1.UseWaitCursor = true;
             // 
             // label2

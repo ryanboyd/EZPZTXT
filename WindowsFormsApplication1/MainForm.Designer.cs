@@ -67,6 +67,7 @@
             // 
             // BgWorker
             // 
+            this.BgWorker.WorkerSupportsCancellation = true;
             this.BgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BgWorker_DoWork);
             this.BgWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BgWorker_RunWorkerCompleted);
             // 
@@ -494,9 +495,9 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox FilenameDisplayBox;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox FilenameDelimiterTextbox;
         private System.Windows.Forms.TextBox SubfolderCountTextBox;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox FilenameDelimiterTextbox;
     }
 }
 

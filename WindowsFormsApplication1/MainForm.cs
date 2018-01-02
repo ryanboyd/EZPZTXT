@@ -75,6 +75,13 @@ namespace EZPZTXT
         private void StartButton_Click(object sender, EventArgs e)
         {
 
+
+            if (BgWorker.IsBusy)
+            {
+                BgWorker.CancelAsync();
+                return;
+            }
+
             EZPZTXT.ColumnChoiceForm ColumnChooser = new EZPZTXT.ColumnChoiceForm();
 
             
@@ -84,6 +91,8 @@ namespace EZPZTXT
                 ColumnChooser.FoldernameListbox.Items.Add(column.Name);
                 ColumnChooser.TextColumnListbox.Items.Add(column.Name);
             }
+
+            ColumnChooser.filenamedelimiter = FilenameDelimiterTextbox.Text;
 
 
             if (ValidateRegex(RegexTextBox.Text))
@@ -125,9 +134,9 @@ namespace EZPZTXT
                         BgData.Delimiters = DelimiterTextBox.Text.ToString();
                         BgData.UsingQuotes = EnclosedInQuotesDropdown.SelectedItem.ToString();
 
-                        BgData.FilenameCols = ColumnChooser.FilenameCols;
-                        BgData.FolderCols = ColumnChooser.FolderCols;
-                        BgData.TextCols = ColumnChooser.TextCols;
+                        BgData.FilenameCols = ColumnChooser.FilenameCols.ToArray();
+                        BgData.FolderCols = ColumnChooser.FolderCols.ToArray();
+                        BgData.TextCols = ColumnChooser.TextCols.ToArray();
 
                         BgData.ColumnNames = dataGridView1.Columns.Cast<DataGridViewColumn>()
                                          .Select(x => x.HeaderText)
@@ -151,6 +160,8 @@ namespace EZPZTXT
                         BgData.NewSubfolderNumber = ulong.Parse(SubfolderCountTextBox.Text);
 
                         DisableButtons();
+
+                        StartButton.Text = "Cancel";
 
                         BgWorker.RunWorkerAsync(BgData);
 
@@ -322,7 +333,7 @@ namespace EZPZTXT
                     while (!parser.EndOfData)
                     {
 
-
+                        
 
                         //report what we're working on
                         FilenameLabel.Invoke((MethodInvoker)delegate
@@ -495,7 +506,7 @@ namespace EZPZTXT
 
 
                     //Loop through each row of the dataset
-                    while (!parser.EndOfData)
+                    while (!parser.EndOfData && !BgWorker.CancellationPending)
                     {
 
                         //parse out the row
@@ -747,6 +758,7 @@ namespace EZPZTXT
 
         private void BgWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            StartButton.Text = "Write Text Files";
             EnableButtons();
             FilenameLabel.Text = "Finished!  :)";
             MessageBox.Show("EZPZTXT has finished writing your .txt files!", "Analysis Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -857,7 +869,6 @@ namespace EZPZTXT
         {
             LoadCSVButton.Enabled = false;
             ReloadCSVButton.Enabled = false;
-            StartButton.Enabled = false;
 
             DelimiterTextBox.Enabled = false;
             EnclosedInQuotesDropdown.Enabled = false;
@@ -875,8 +886,7 @@ namespace EZPZTXT
         {
             LoadCSVButton.Enabled = true;
             ReloadCSVButton.Enabled = true;
-            StartButton.Enabled = true;
-
+            
             DelimiterTextBox.Enabled = true;
             EnclosedInQuotesDropdown.Enabled = true;
             HeaderRowDropdown.Enabled = true;
