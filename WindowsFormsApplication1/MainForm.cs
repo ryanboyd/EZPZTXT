@@ -412,6 +412,9 @@ namespace EZPZTXT
                 dataGridView1.DataSource = e.Result;
                 ReloadCSVButton.Enabled = true;
                 StartButton.Enabled = true;
+                MessageBox.Show("Your data file preview has been loaded." + "\r\n\r\n" + 
+                                "If your preview window appears to be empty, you most likely need to edit your settings under the \"Options for Reading Data File\" section.", "Preview Loaded", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             }
             catch
             {
