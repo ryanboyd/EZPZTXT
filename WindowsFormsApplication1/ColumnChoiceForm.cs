@@ -138,10 +138,16 @@ namespace EZPZTXT
                 textbox_text += FilenameListbox.Items[item].ToString() + filenamedelimiter;
             }
 
-            FilenameTextbox.Text = textbox_text.Substring(0, textbox_text.LastIndexOf(filenamedelimiter));
-            FilenameTextbox.Focus();
-            // Move the caret to the end of the text box
-            FilenameTextbox.Select(FilenameTextbox.Text.Length, 0);
+            if (textbox_text.Length > 0) { 
+                FilenameTextbox.Text = textbox_text.Substring(0, textbox_text.LastIndexOf(filenamedelimiter));
+                FilenameTextbox.Focus();
+                // Move the caret to the end of the text box
+                FilenameTextbox.Select(FilenameTextbox.Text.Length, 0);
+            }
+            else
+            {
+                FilenameTextbox.Text = "";
+            }
         }
 
 
@@ -171,10 +177,17 @@ namespace EZPZTXT
                 textbox_text += TextColumnListbox.Items[item].ToString() + " || ";
             }
 
-            TextColTextbox.Text = textbox_text.Substring(0, textbox_text.LastIndexOf(" || "));
-            TextColTextbox.Focus();
-            // Move the caret to the end of the text box
-            TextColTextbox.Select(TextColTextbox.Text.Length, 0);
+            if (textbox_text.Length > 0)
+            {
+                TextColTextbox.Text = textbox_text.Substring(0, textbox_text.LastIndexOf(" || "));
+                TextColTextbox.Focus();
+                // Move the caret to the end of the text box
+                TextColTextbox.Select(TextColTextbox.Text.Length, 0);
+            }
+            else
+            {
+                TextColTextbox.Text = "";
+            }
         }
 
 
