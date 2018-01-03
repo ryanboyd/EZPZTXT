@@ -75,7 +75,7 @@
             // 
             this.StartButton.Enabled = false;
             this.StartButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StartButton.Location = new System.Drawing.Point(81, 219);
+            this.StartButton.Location = new System.Drawing.Point(81, 217);
             this.StartButton.Name = "StartButton";
             this.StartButton.Size = new System.Drawing.Size(152, 34);
             this.StartButton.TabIndex = 3;
@@ -185,11 +185,11 @@
             // 
             this.ReloadCSVButton.Enabled = false;
             this.ReloadCSVButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ReloadCSVButton.Location = new System.Drawing.Point(81, 159);
+            this.ReloadCSVButton.Location = new System.Drawing.Point(69, 158);
             this.ReloadCSVButton.Name = "ReloadCSVButton";
-            this.ReloadCSVButton.Size = new System.Drawing.Size(152, 34);
+            this.ReloadCSVButton.Size = new System.Drawing.Size(175, 34);
             this.ReloadCSVButton.TabIndex = 16;
-            this.ReloadCSVButton.Text = "Reload Data File";
+            this.ReloadCSVButton.Text = "Reload Data Preview";
             this.ReloadCSVButton.UseVisualStyleBackColor = true;
             this.ReloadCSVButton.Click += new System.EventHandler(this.ReloadCSVButton_Click);
             // 
