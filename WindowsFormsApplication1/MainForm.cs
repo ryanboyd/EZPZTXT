@@ -705,7 +705,7 @@ namespace EZPZTXT
                             {
                                 using (StreamWriter outputFile = new StreamWriter(new FileStream(OutputFile, FileMode.Append, FileAccess.Write), SelectedEncoding))
                                 {
-                                    outputFile.Write(OutputList[i][1]);
+                                    outputFile.Write(OutputList[i][1] + "\r\n");
                                 }
                             }
                         }
