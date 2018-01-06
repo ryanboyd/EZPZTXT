@@ -185,9 +185,16 @@ namespace EZPZTXT
         private void GeneratePreviewButton_Click(object sender, EventArgs e)
         {
 
+            
             FilenameDisplayBox.Text = "No file selected...";
 
+            FilenameLabel.Text = "Clearing old preview... (This might take a while for previews with a large number of columns.)";
+            FilenameLabel.Invalidate();
+            FilenameLabel.Update();
+            FilenameLabel.Refresh();
+
             dataGridView1.DataSource = null;
+            FilenameLabel.Text = "Ready to load a data file preview.";
 
             openFileDialog.Title = "Please select you data file...";
 
@@ -195,6 +202,8 @@ namespace EZPZTXT
 
                 if (InputFileDialog != DialogResult.Cancel)
                 {
+
+                    DisableButtons();
                     string InputFile = openFileDialog.FileName;
 
                     FilenameDisplayBox.Text = InputFile;
@@ -238,10 +247,18 @@ namespace EZPZTXT
         private void ReloadCSVButton_Click(object sender, EventArgs e)
         {
 
+            FilenameLabel.Text = "Clearing old preview... (This might take a while for previews with a large number of columns.)";
+            FilenameLabel.Invalidate();
+            FilenameLabel.Update();
+            FilenameLabel.Refresh();
+
             dataGridView1.DataSource = null;
+            FilenameLabel.Text = "Ready to load a data file preview.";
 
             if (FilenameDisplayBox.Text != "No file selected...")
             {
+
+                DisableButtons();
                 BgWorkerInformation BgData = new BgWorkerInformation();
 
                 BgData.InputFile = FilenameDisplayBox.Text;
@@ -410,6 +427,7 @@ namespace EZPZTXT
             //bind the results to the datagridview
             try { 
                 dataGridView1.DataSource = e.Result;
+                EnableButtons();
                 ReloadCSVButton.Enabled = true;
                 StartButton.Enabled = true;
                 MessageBox.Show("Your data file preview has been loaded." + "\r\n\r\n" + 
@@ -481,8 +499,9 @@ namespace EZPZTXT
 
             // create the parser
             using (TextFieldParser parser = new TextFieldParser(InputFile, SelectedEncoding))
-                {
+            {
 
+                
                     // set the parser properties
                     parser.TrimWhiteSpace = true; //trim the whitespace to make sure that files/folder names don't end with a space, which will break the program
                     parser.TextFieldType = FieldType.Delimited;
@@ -502,12 +521,13 @@ namespace EZPZTXT
 
 
 
-                    //Loop through each row of the dataset
-                    while (!parser.EndOfData && !BgWorker.CancellationPending)
-                    {
+                //Loop through each row of the dataset
+                while (!parser.EndOfData && !BgWorker.CancellationPending)
+                // while (!parser.EndOfData)
+                {
 
-                        //parse out the row
-                        string[] fields = parser.ReadFields();
+                    //parse out the row
+                    string[] fields = parser.ReadFields();
 
                         LineNumber++;
 
