@@ -132,6 +132,8 @@ namespace EZPZTXT
                         BgData.FolderCols = ColumnChooser.FolderCols.ToArray();
                         BgData.TextCols = ColumnChooser.TextCols.ToArray();
 
+                        BgData.ConditionalRules = ColumnChooser.ConditionalRules_UserSet.ToArray();
+
                         BgData.ColumnNames = dataGridView1.Columns.Cast<DataGridViewColumn>()
                                          .Select(x => x.HeaderText)
                                          .ToArray();
@@ -495,7 +497,7 @@ namespace EZPZTXT
                 SelectedEncoding = Encoding.GetEncoding(EncodingDropdown.SelectedItem.ToString());
             });
 
-
+            int NumberOfConditionals = BgData.ConditionalRules.Length;
 
             // create the parser
             using (TextFieldParser parser = new TextFieldParser(InputFile, SelectedEncoding))
@@ -523,7 +525,6 @@ namespace EZPZTXT
 
                 //Loop through each row of the dataset
                 while (!parser.EndOfData && !BgWorker.CancellationPending)
-                // while (!parser.EndOfData)
                 {
 
                     //parse out the row
@@ -552,9 +553,58 @@ namespace EZPZTXT
                                 }
                             }
 
-                        
 
-                        
+                    //now that the row is parsed out, and we've established whether it's a header row, we can decide if this is
+                    //a row that we can skip, based on the conditionals that were supplied by the user.
+
+                    //   ____                _ _ _   _                   _     
+                    //  / ___|___  _ __   __| (_) |_(_) ___  _ __   __ _| |___ 
+                    // | |   / _ \| '_ \ / _` | | __| |/ _ \| '_ \ / _` | / __|
+                    // | |__| (_) | | | | (_| | | |_| | (_) | | | | (_| | \__ \
+                    //  \____\___/|_| |_|\__,_|_|\__|_|\___/|_| |_|\__,_|_|___/
+                    //                                                         
+                    if (NumberOfConditionals > 0)
+                    {
+
+                        bool skiprow = false;
+
+                        for (int ConditionalCounter = 0; ConditionalCounter < NumberOfConditionals; ConditionalCounter++)
+                        {
+
+                            skiprow = false;
+
+                            switch (BgData.ConditionalRules[ConditionalCounter].Item2)
+                            {
+                                case "is":
+                                    if (fields[BgData.ConditionalRules[ConditionalCounter].Item1] != BgData.ConditionalRules[ConditionalCounter].Item3) skiprow = true;
+                                    break;
+
+                                case "is not":
+                                    if (fields[BgData.ConditionalRules[ConditionalCounter].Item1] == BgData.ConditionalRules[ConditionalCounter].Item3) skiprow = true;
+                                    break;
+
+                                case "contains":
+                                    if (!fields[BgData.ConditionalRules[ConditionalCounter].Item1].Contains(BgData.ConditionalRules[ConditionalCounter].Item3)) skiprow = true;
+                                    break;
+
+                                case "does not contain":
+                                    if (fields[BgData.ConditionalRules[ConditionalCounter].Item1].Contains(BgData.ConditionalRules[ConditionalCounter].Item3)) skiprow = true;
+                                    break;
+
+                            }
+
+                            if (skiprow) break;
+
+                        }
+
+                        if (skiprow) continue;
+
+                    }
+
+
+
+
+
 
 
 
@@ -942,6 +992,7 @@ namespace EZPZTXT
             public string FilenameDelimiter { get; set; }
             public bool AutofixFilenames { get; set; }
             public ulong NewSubfolderNumber { get; set; }
+            public Tuple<int, string, string>[] ConditionalRules { get; set; }
 
         }
 

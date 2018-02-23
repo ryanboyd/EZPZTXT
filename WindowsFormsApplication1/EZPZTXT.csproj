@@ -78,6 +78,12 @@
     <Compile Include="ColumnChoiceForm.Designer.cs">
       <DependentUpon>ColumnChoiceForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Conditionals.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Conditionals.Designer.cs">
+      <DependentUpon>Conditionals.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +100,9 @@
     </Compile>
     <EmbeddedResource Include="ColumnChoiceForm.resx">
       <DependentUpon>ColumnChoiceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Conditionals.resx">
+      <DependentUpon>Conditionals.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

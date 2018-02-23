@@ -20,6 +20,7 @@ namespace EZPZTXT
         public List<int> TextCols { get; set; }
         public bool AutofixFilenames { get; set; }
         public string filenamedelimiter { get; set; }
+        public List<Tuple<int, string, string>> ConditionalRules_UserSet { get; set; }
 
         public ColumnChoiceForm()
         {
@@ -27,6 +28,7 @@ namespace EZPZTXT
             FilenameCols = new List<int>();
             FolderCols = new List<int>();
             TextCols = new List<int>();
+            ConditionalRules_UserSet = new List<Tuple<int, string, string>>();
         }
 
 
@@ -190,7 +192,61 @@ namespace EZPZTXT
             }
         }
 
+        private void AddConditionalsButton_Click(object sender, EventArgs e)
+        {
+
+            ConditionalRules_UserSet = new List<Tuple<int, string, string>>();
+
+            EZPZTXT.Conditionals AddConditionals = new EZPZTXT.Conditionals();
+
+            
+            //we have to set up our selection options using the dataset columns
+            //here, we just rip them off out of what we already have in this form
+            foreach (string item in FilenameListbox.Items)
+            {
+                AddConditionals.TargetCombobox1.Items.Add(item);
+            }
+
+            //a little more setup
+            AddConditionals.ConditionalCombobox1.Items.Add("is");
+            AddConditionals.ConditionalCombobox1.Items.Add("is not");
+            AddConditionals.ConditionalCombobox1.Items.Add("contains");
+            AddConditionals.ConditionalCombobox1.Items.Add("does not contain");
+            AddConditionals.TargetCombobox1.SelectedIndex = 0;
+            AddConditionals.ConditionalCombobox1.SelectedIndex = 0;
+
+            //now, let's show the form as a dialog
+            var result = AddConditionals.ShowDialog();
+
+            //if everything is good... we want to save this all as a list
+            if (result == DialogResult.OK)
+            {
+                for (ushort rule = 1; rule <= AddConditionals.NumberOfRules; rule++)
+                {
+                    ComboBox Target = (ComboBox)AddConditionals.ConditionalPanel.Controls.Find("TargetCombobox" + rule.ToString(), true)[0];
+                    ComboBox Conditional = (ComboBox)AddConditionals.ConditionalPanel.Controls.Find("ConditionalCombobox" + rule.ToString(), true)[0];
+                    TextBox Criterion = (TextBox)AddConditionals.ConditionalPanel.Controls.Find("CriterionTextbox" + rule.ToString(), true)[0];
+
+                    int TargetNum = Target.SelectedIndex; ;
+                    string ConditionalStatus = Conditional.SelectedItem.ToString();
+                    string CriterionString = Criterion.Text.Trim();
+
+                    ConditionalRules_UserSet.Add(new Tuple<int, string, string>(TargetNum, ConditionalStatus, CriterionString));
 
 
+                }
+
+                //gotta get rid of any duplicates
+                ConditionalRules_UserSet = ConditionalRules_UserSet.Distinct().ToList();
+
+            }
+
+            else
+            {
+                MessageBox.Show("You have selected the \"Cancel\" button. All rules have" + "\r\n" +
+                                "been erased and will not be used.", "Rules Cleared", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+        }
     }
 }

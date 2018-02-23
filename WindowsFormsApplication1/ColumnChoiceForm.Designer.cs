@@ -44,6 +44,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.AddConditionalsButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // FilenameListbox
@@ -89,7 +90,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(242, 14);
+            this.label1.Location = new System.Drawing.Point(237, 14);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(196, 20);
             this.label1.TabIndex = 3;
@@ -118,7 +119,7 @@
             // StartButton
             // 
             this.StartButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StartButton.Location = new System.Drawing.Point(350, 369);
+            this.StartButton.Location = new System.Drawing.Point(433, 371);
             this.StartButton.Name = "StartButton";
             this.StartButton.Size = new System.Drawing.Size(152, 34);
             this.StartButton.TabIndex = 6;
@@ -130,7 +131,7 @@
             // 
             this.CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.CancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CancelButton.Location = new System.Drawing.Point(180, 369);
+            this.CancelButton.Location = new System.Drawing.Point(263, 371);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(152, 34);
             this.CancelButton.TabIndex = 7;
@@ -210,14 +211,27 @@
             this.label6.TabIndex = 14;
             this.label6.Text = "Text Output Order:";
             // 
+            // AddConditionalsButton
+            // 
+            this.AddConditionalsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddConditionalsButton.Location = new System.Drawing.Point(90, 371);
+            this.AddConditionalsButton.Name = "AddConditionalsButton";
+            this.AddConditionalsButton.Size = new System.Drawing.Size(152, 34);
+            this.AddConditionalsButton.TabIndex = 15;
+            this.AddConditionalsButton.Text = "Add Rules";
+            this.AddConditionalsButton.UseVisualStyleBackColor = true;
+            this.AddConditionalsButton.Click += new System.EventHandler(this.AddConditionalsButton_Click);
+            // 
             // ColumnChoiceForm
             // 
             this.AcceptButton = this.StartButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SeaGreen;
-            this.ClientSize = new System.Drawing.Size(679, 417);
+            this.CancelButton = this.CancelButton;
+            this.ClientSize = new System.Drawing.Size(679, 416);
             this.ControlBox = false;
+            this.Controls.Add(this.AddConditionalsButton);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -235,8 +249,8 @@
             this.Controls.Add(this.FilenameListbox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(695, 456);
-            this.MinimumSize = new System.Drawing.Size(695, 456);
+            this.MaximumSize = new System.Drawing.Size(695, 455);
+            this.MinimumSize = new System.Drawing.Size(695, 455);
             this.Name = "ColumnChoiceForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -262,5 +276,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button AddConditionalsButton;
     }
 }
