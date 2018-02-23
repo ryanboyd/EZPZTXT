@@ -357,9 +357,9 @@
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(11, 121);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(178, 16);
+            this.label9.Size = new System.Drawing.Size(174, 16);
             this.label9.TabIndex = 25;
-            this.label9.Text = "New subfolder every N rows:";
+            this.label9.Text = "New subfolder every N files:";
             // 
             // SeparateFilesPerColumnDropdown
             // 

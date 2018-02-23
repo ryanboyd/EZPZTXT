@@ -513,7 +513,9 @@ namespace EZPZTXT
 
                     bool firstLine = true;
                     ulong LineNumber = 0;
-                    ulong FolderNumber = 1;
+                    ulong FileNumber = 0;
+                    ulong LastFileNumberforFolderCreation = 0;
+                    ulong FolderNumber = 0;
 
                     //report what we're working on
                     FilenameLabel.Invoke((MethodInvoker)delegate
@@ -703,9 +705,10 @@ namespace EZPZTXT
                     if (BgData.NewSubfolderNumber > 0) { 
                         OutputFileLocation = Path.Combine(OutputFileLocation, "Pt_" + (FolderNumber).ToString());
 
-                        if (LineNumber % BgData.NewSubfolderNumber == 0)
+                        if (FileNumber % BgData.NewSubfolderNumber == 0 && FileNumber != LastFileNumberforFolderCreation)
                         {
                             FolderNumber++;
+                            LastFileNumberforFolderCreation = FileNumber;
                         }
                     }
 
@@ -756,7 +759,7 @@ namespace EZPZTXT
 
                         string OutputFile = Path.Combine(OutputFileLocation, OutputList[i][0]);
 
-
+                        
                         //if it doesn't have a filename, we don't want to try to write it
                         //on second thought, this isn't possible. at the bare minimum, the filename will be ".txt", which can still be written.
                         //if (string.IsNullOrWhiteSpace(OutputFile)) break;
@@ -764,6 +767,9 @@ namespace EZPZTXT
 
                         try
                         {
+
+                            if (!File.Exists(OutputFile)) FileNumber++;
+
                             if (BgData.OverWriteFiles)
                             {
                                 using (StreamWriter outputFile = new StreamWriter(new FileStream(OutputFile, FileMode.Create, FileAccess.Write), SelectedEncoding))
