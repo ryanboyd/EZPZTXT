@@ -218,7 +218,7 @@
             this.AddConditionalsButton.Name = "AddConditionalsButton";
             this.AddConditionalsButton.Size = new System.Drawing.Size(152, 34);
             this.AddConditionalsButton.TabIndex = 15;
-            this.AddConditionalsButton.Text = "Add Rules";
+            this.AddConditionalsButton.Text = "Set Conditionals";
             this.AddConditionalsButton.UseVisualStyleBackColor = true;
             this.AddConditionalsButton.Click += new System.EventHandler(this.AddConditionalsButton_Click);
             // 
@@ -228,7 +228,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SeaGreen;
-            this.CancelButton = this.CancelButton;
             this.ClientSize = new System.Drawing.Size(679, 416);
             this.ControlBox = false;
             this.Controls.Add(this.AddConditionalsButton);

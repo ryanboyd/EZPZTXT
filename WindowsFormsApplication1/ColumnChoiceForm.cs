@@ -239,6 +239,8 @@ namespace EZPZTXT
                 //gotta get rid of any duplicates
                 ConditionalRules_UserSet = ConditionalRules_UserSet.Distinct().ToList();
 
+                MessageBox.Show("Your conditionals have been set.", "Rules Set", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             }
 
             else
