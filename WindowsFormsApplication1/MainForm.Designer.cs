@@ -60,6 +60,7 @@
             this.AppendOrOverwriteDropdown = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.FilenameDisplayBox = new System.Windows.Forms.TextBox();
+            this.IncludeRowNumberInNameCheckbox = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -75,7 +76,7 @@
             // 
             this.StartButton.Enabled = false;
             this.StartButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StartButton.Location = new System.Drawing.Point(81, 217);
+            this.StartButton.Location = new System.Drawing.Point(81, 242);
             this.StartButton.Name = "StartButton";
             this.StartButton.Size = new System.Drawing.Size(152, 34);
             this.StartButton.TabIndex = 3;
@@ -92,7 +93,7 @@
             this.FilenameLabel.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.FilenameLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.FilenameLabel.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FilenameLabel.Location = new System.Drawing.Point(12, 524);
+            this.FilenameLabel.Location = new System.Drawing.Point(12, 551);
             this.FilenameLabel.Name = "FilenameLabel";
             this.FilenameLabel.Size = new System.Drawing.Size(973, 23);
             this.FilenameLabel.TabIndex = 6;
@@ -264,7 +265,7 @@
             // LoadCSVButton
             // 
             this.LoadCSVButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LoadCSVButton.Location = new System.Drawing.Point(502, 478);
+            this.LoadCSVButton.Location = new System.Drawing.Point(502, 501);
             this.LoadCSVButton.Name = "LoadCSVButton";
             this.LoadCSVButton.Size = new System.Drawing.Size(152, 34);
             this.LoadCSVButton.TabIndex = 12;
@@ -288,13 +289,14 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView1.ShowCellToolTips = false;
             this.dataGridView1.ShowEditingIcon = false;
-            this.dataGridView1.Size = new System.Drawing.Size(642, 429);
+            this.dataGridView1.Size = new System.Drawing.Size(642, 457);
             this.dataGridView1.TabIndex = 15;
             this.dataGridView1.VirtualMode = true;
             this.dataGridView1.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridView1_ColumnAdded);
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.IncludeRowNumberInNameCheckbox);
             this.groupBox2.Controls.Add(this.SubfolderCountTextBox);
             this.groupBox2.Controls.Add(this.FilenameDelimiterTextbox);
             this.groupBox2.Controls.Add(this.label10);
@@ -309,7 +311,7 @@
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(673, 259);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(312, 262);
+            this.groupBox2.Size = new System.Drawing.Size(312, 285);
             this.groupBox2.TabIndex = 19;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Options for Writing Text Files";
@@ -422,7 +424,7 @@
             this.FilenameDisplayBox.Enabled = false;
             this.FilenameDisplayBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FilenameDisplayBox.ForeColor = System.Drawing.Color.Black;
-            this.FilenameDisplayBox.Location = new System.Drawing.Point(12, 480);
+            this.FilenameDisplayBox.Location = new System.Drawing.Point(12, 506);
             this.FilenameDisplayBox.MaxLength = 9999999;
             this.FilenameDisplayBox.Name = "FilenameDisplayBox";
             this.FilenameDisplayBox.ReadOnly = true;
@@ -434,12 +436,23 @@
             this.FilenameDisplayBox.Text = "No file selected...";
             this.FilenameDisplayBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // IncludeRowNumberInNameCheckbox
+            // 
+            this.IncludeRowNumberInNameCheckbox.AutoSize = true;
+            this.IncludeRowNumberInNameCheckbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IncludeRowNumberInNameCheckbox.Location = new System.Drawing.Point(14, 212);
+            this.IncludeRowNumberInNameCheckbox.Name = "IncludeRowNumberInNameCheckbox";
+            this.IncludeRowNumberInNameCheckbox.Size = new System.Drawing.Size(229, 20);
+            this.IncludeRowNumberInNameCheckbox.TabIndex = 28;
+            this.IncludeRowNumberInNameCheckbox.Text = "Append Row Number to Filename";
+            this.IncludeRowNumberInNameCheckbox.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SeaGreen;
-            this.ClientSize = new System.Drawing.Size(999, 551);
+            this.ClientSize = new System.Drawing.Size(999, 581);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.FilenameDisplayBox);
             this.Controls.Add(this.groupBox1);
@@ -451,8 +464,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1015, 590);
-            this.MinimumSize = new System.Drawing.Size(1015, 590);
+            this.MaximumSize = new System.Drawing.Size(1015, 620);
+            this.MinimumSize = new System.Drawing.Size(1015, 620);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EZPZTXT";
@@ -498,6 +511,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox FilenameDelimiterTextbox;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.CheckBox IncludeRowNumberInNameCheckbox;
     }
 }
 

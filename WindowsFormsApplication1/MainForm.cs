@@ -492,9 +492,12 @@ namespace EZPZTXT
             string[] Delimiters = BgData.Delimiters.ToCharArray().Select(c => c.ToString()).ToArray(); ;
             bool UsingQuotes = Convert.ToBoolean(BgData.UsingQuotes);
 
+            bool IncludeRowNumberInFilename = false;
+
             this.Invoke((MethodInvoker)delegate ()
             {
                 SelectedEncoding = Encoding.GetEncoding(EncodingDropdown.SelectedItem.ToString());
+                IncludeRowNumberInFilename = IncludeRowNumberInNameCheckbox.Checked;
             });
 
             int NumberOfConditionals = BgData.ConditionalRules.Length;
@@ -618,6 +621,13 @@ namespace EZPZTXT
                         {
                            FilenameBase = string.Join(BgData.FilenameDelimiter, new string[] { FilenameBase, fields[BgData.FilenameCols[i]]} );
                         }
+
+                        if (IncludeRowNumberInFilename)
+                    {
+                        FilenameBase += BgData.FilenameDelimiter + LineNumber.ToString();
+                    }
+
+
 
 
 
@@ -953,6 +963,9 @@ namespace EZPZTXT
             SubfolderCountTextBox.Enabled = false;
             FilenameDelimiterTextbox.Enabled = false;
             RegexTextBox.Enabled = false;
+
+            IncludeRowNumberInNameCheckbox.Enabled = false;
+
         }
 
         public void EnableButtons()
@@ -970,6 +983,8 @@ namespace EZPZTXT
             SubfolderCountTextBox.Enabled = true;
             FilenameDelimiterTextbox.Enabled = true;
             RegexTextBox.Enabled = true;
+
+            IncludeRowNumberInNameCheckbox.Enabled = true;
 
         }
 
