@@ -51,6 +51,7 @@
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.IncludeRowNumberInNameCheckbox = new System.Windows.Forms.CheckBox();
             this.SubfolderCountTextBox = new System.Windows.Forms.TextBox();
             this.FilenameDelimiterTextbox = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -60,7 +61,6 @@
             this.AppendOrOverwriteDropdown = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.FilenameDisplayBox = new System.Windows.Forms.TextBox();
-            this.IncludeRowNumberInNameCheckbox = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -316,6 +316,17 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Options for Writing Text Files";
             // 
+            // IncludeRowNumberInNameCheckbox
+            // 
+            this.IncludeRowNumberInNameCheckbox.AutoSize = true;
+            this.IncludeRowNumberInNameCheckbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IncludeRowNumberInNameCheckbox.Location = new System.Drawing.Point(14, 212);
+            this.IncludeRowNumberInNameCheckbox.Name = "IncludeRowNumberInNameCheckbox";
+            this.IncludeRowNumberInNameCheckbox.Size = new System.Drawing.Size(229, 20);
+            this.IncludeRowNumberInNameCheckbox.TabIndex = 28;
+            this.IncludeRowNumberInNameCheckbox.Text = "Append Row Number to Filename";
+            this.IncludeRowNumberInNameCheckbox.UseVisualStyleBackColor = true;
+            // 
             // SubfolderCountTextBox
             // 
             this.SubfolderCountTextBox.AcceptsTab = true;
@@ -359,9 +370,9 @@
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(11, 121);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(174, 16);
+            this.label9.Size = new System.Drawing.Size(178, 16);
             this.label9.TabIndex = 25;
-            this.label9.Text = "New subfolder every N files:";
+            this.label9.Text = "New subfolder every N rows:";
             // 
             // SeparateFilesPerColumnDropdown
             // 
@@ -435,17 +446,6 @@
             this.FilenameDisplayBox.TabStop = false;
             this.FilenameDisplayBox.Text = "No file selected...";
             this.FilenameDisplayBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // IncludeRowNumberInNameCheckbox
-            // 
-            this.IncludeRowNumberInNameCheckbox.AutoSize = true;
-            this.IncludeRowNumberInNameCheckbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IncludeRowNumberInNameCheckbox.Location = new System.Drawing.Point(14, 212);
-            this.IncludeRowNumberInNameCheckbox.Name = "IncludeRowNumberInNameCheckbox";
-            this.IncludeRowNumberInNameCheckbox.Size = new System.Drawing.Size(229, 20);
-            this.IncludeRowNumberInNameCheckbox.TabIndex = 28;
-            this.IncludeRowNumberInNameCheckbox.Text = "Append Row Number to Filename";
-            this.IncludeRowNumberInNameCheckbox.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 

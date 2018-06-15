@@ -35,14 +35,21 @@ namespace EZPZTXT
                 EncodingDropdown.Items.Add(encoding.Name);
             }
 
+            try
+            {
+                EncodingDropdown.SelectedIndex = EncodingDropdown.FindStringExact("utf-8");
+            }
+            catch
+            {
+                EncodingDropdown.SelectedIndex = EncodingDropdown.FindStringExact(Encoding.Default.BodyName);
+            }
             
-            EncodingDropdown.SelectedIndex = EncodingDropdown.FindStringExact(Encoding.Default.BodyName);
             
 
 
             EnclosedInQuotesDropdown.SelectedIndex = 0;
             HeaderRowDropdown.SelectedIndex = 0;
-            AppendOrOverwriteDropdown.SelectedIndex = 0;
+            AppendOrOverwriteDropdown.SelectedIndex = 1;
             SeparateFilesPerColumnDropdown.SelectedIndex = 1;
 
             label8.Text = "Separate files for\r\neach text column?";
@@ -516,7 +523,7 @@ namespace EZPZTXT
 
                     bool firstLine = true;
                     ulong LineNumber = 0;
-                    ulong FileNumber = 0;
+                    //ulong FileNumber = 0;
                     ulong LastFileNumberforFolderCreation = 0;
                     ulong FolderNumber = 0;
 
@@ -715,10 +722,10 @@ namespace EZPZTXT
                     if (BgData.NewSubfolderNumber > 0) { 
                         OutputFileLocation = Path.Combine(OutputFileLocation, "Pt_" + (FolderNumber).ToString());
 
-                        if (FileNumber % BgData.NewSubfolderNumber == 0 && FileNumber != LastFileNumberforFolderCreation)
+                        if (LineNumber % BgData.NewSubfolderNumber == 0 && LineNumber != LastFileNumberforFolderCreation)
                         {
                             FolderNumber++;
-                            LastFileNumberforFolderCreation = FileNumber;
+                            LastFileNumberforFolderCreation = LineNumber;
                         }
                     }
 
@@ -778,7 +785,8 @@ namespace EZPZTXT
                         try
                         {
 
-                            if (!File.Exists(OutputFile)) FileNumber++;
+                            //we're no longer checking for if the file exists. this slows things down way too much
+                            //if (!File.Exists(OutputFile)) FileNumber++;
 
                             if (BgData.OverWriteFiles)
                             {
