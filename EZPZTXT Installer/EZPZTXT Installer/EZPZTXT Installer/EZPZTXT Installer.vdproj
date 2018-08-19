@@ -15,20 +15,20 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_4E692149BF3E4D90A161A5AD615616D7"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_79B73D3FEB9541AFB653E95BD281043B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_DDE64B9EA0974B6BB5A4C120E2733B58"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_DDE64B9EA0974B6BB5A4C120E2733B58"
+        "OwnerKey" = "8:_4E692149BF3E4D90A161A5AD615616D7"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -126,10 +126,21 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_79B73D3FEB9541AFB653E95BD281043B"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4E692149BF3E4D90A161A5AD615616D7"
             {
-            "SourcePath" = "8:..\\..\\..\\csv2txt.ico"
-            "TargetName" = "8:csv2txt.ico"
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:EZPZTXT, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_4E692149BF3E4D90A161A5AD615616D7"
+                    {
+                    "Name" = "8:EZPZTXT.exe"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\..\\..\\WindowsFormsApplication1\\bin\\Release\\EZPZTXT.exe"
+            "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_3E04F6F185944E05B63B6F9B8B9B02B5"
             "Condition" = "8:"
@@ -146,21 +157,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_DDE64B9EA0974B6BB5A4C120E2733B58"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_79B73D3FEB9541AFB653E95BD281043B"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:EZPZTXT, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_DDE64B9EA0974B6BB5A4C120E2733B58"
-                    {
-                    "Name" = "8:EZPZTXT.exe"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:..\\..\\..\\WindowsFormsApplication1\\bin\\Release\\EZPZTXT.exe"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\..\\..\\csv2txt.ico"
+            "TargetName" = "8:csv2txt.ico"
             "Tag" = "8:"
             "Folder" = "8:_3E04F6F185944E05B63B6F9B8B9B02B5"
             "Condition" = "8:"
@@ -233,15 +233,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:EZPZTXT"
-        "ProductCode" = "8:{E9C8E876-3D00-46DC-986C-1A7E0FC3A224}"
-        "PackageCode" = "8:{0F657495-7C76-4B7A-86FF-3444CD031CD9}"
+        "ProductCode" = "8:{12D08B97-7966-41C2-A816-5C377DAF70A4}"
+        "PackageCode" = "8:{004947E1-37A9-41AA-B292-A58504127B69}"
         "UpgradeCode" = "8:{16AB119A-297B-4C38-9149-DDFBA017F859}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.13"
+        "ProductVersion" = "8:1.14"
         "Manufacturer" = "8:Ryan L. Boyd, Ph.D."
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:https://ryanb.cc"
@@ -354,7 +354,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_158421D4AFBF40FD9E8775942C0AA98C"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_6A7A136B11F54D52A9D5424862BDDFF7"
             {
             "Name" = "8:EZPZTXT"
             "Arguments" = "8:"
@@ -362,13 +362,13 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_DDE64B9EA0974B6BB5A4C120E2733B58"
+            "Target" = "8:_4E692149BF3E4D90A161A5AD615616D7"
             "Folder" = "8:_216A1689BEFA4C8ABBA7895CF9860E0C"
             "WorkingFolder" = "8:_3E04F6F185944E05B63B6F9B8B9B02B5"
             "Icon" = "8:_79B73D3FEB9541AFB653E95BD281043B"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_328AF7BD054F492F8937CCF4646D5F3D"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_E4F2ABCAC3AE4D55B06E27D9FF9CCAD9"
             {
             "Name" = "8:EZPZTXT"
             "Arguments" = "8:"
@@ -376,7 +376,7 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_DDE64B9EA0974B6BB5A4C120E2733B58"
+            "Target" = "8:_4E692149BF3E4D90A161A5AD615616D7"
             "Folder" = "8:_DC1FF2DC463A4F3B8C548C7AF5EBED71"
             "WorkingFolder" = "8:_3E04F6F185944E05B63B6F9B8B9B02B5"
             "Icon" = "8:_79B73D3FEB9541AFB653E95BD281043B"
