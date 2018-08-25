@@ -363,38 +363,47 @@ namespace EZPZTXT
 
 
                         //Processing row
-                        string[] fields = parser.ReadFields();
-
-                        LineNumber++;
-
-                        // get the column headers
-                        if (firstLine)
+                        try
                         {
+                            string[] fields = parser.ReadFields();
 
-                            firstLine = false;
+                            LineNumber++;
 
-                            if (HasHeaders)
+                            // get the column headers
+                            if (firstLine)
                             {
-                                foreach (var val in fields)
-                                {
-                                    dt.Columns.Add(val);
-                                }
-                                LineNumber--;
-                                continue;
-                            }
-                            else
-                            {
-                                for (int i = 1; i <= fields.Length; i++)
-                                {
-                                    dt.Columns.Add("v" + i.ToString());
-                                }
 
+                                firstLine = false;
+
+                                if (HasHeaders)
+                                {
+                                    foreach (var val in fields)
+                                    {
+                                        dt.Columns.Add(val);
+                                    }
+                                    LineNumber--;
+                                    continue;
+                                }
+                                else
+                                {
+                                    for (int i = 1; i <= fields.Length; i++)
+                                    {
+                                        dt.Columns.Add("v" + i.ToString());
+                                    }
+
+                                }
                             }
+
+
+                            // get the row data
+                            dt.Rows.Add(fields);
                         }
 
-
-                        // get the row data
-                        dt.Rows.Add(fields);
+                        catch(MalformedLineException MLE)
+                        {
+                            MessageBox.Show(text: "EZPZTXT found a malformed field on Line #" + (LineNumber + 2).ToString() + ". This line will be skipped.", caption: "Malformed Line Exception", buttons: MessageBoxButtons.OK, icon: MessageBoxIcon.Error, defaultButton: MessageBoxDefaultButton.Button1, options: MessageBoxOptions.DefaultDesktopOnly);
+                        }
+                        
 
                         if (LineNumber > 999)
                         {
@@ -542,78 +551,88 @@ namespace EZPZTXT
                 while (!parser.EndOfData && !BgWorker.CancellationPending)
                 {
 
-                    //parse out the row
-                    string[] fields = parser.ReadFields();
+                    string[] fields;
+                    try { 
+                        //parse out the row
+                        fields = parser.ReadFields();
 
                         LineNumber++;
 
                         //report what row we're working on
-                        if (LineNumber % 10 == 0) { 
-                        FilenameLabel.Invoke((MethodInvoker)delegate
-                            {
-                                FilenameLabel.Text = "Currently writing text file(s) from row #" + LineNumber.ToString();
-                            });
+                        if (LineNumber % 10 == 0) {
+                            FilenameLabel.Invoke((MethodInvoker)delegate
+                                {
+                                    FilenameLabel.Text = "Currently writing text file(s) from row #" + LineNumber.ToString();
+                                });
                         }
-                        
+
 
                         // get the column headers
                         if (firstLine)
+                        {
+                            firstLine = false;
+                            //essentially, if the first line of the dataset is headers, we'll just skip on to the next line
+                            if (HasHeaders)
                             {
-                                firstLine = false;
-                                //essentially, if the first line of the dataset is headers, we'll just skip on to the next line
-                                if (HasHeaders)
-                                {
-                                    LineNumber--;
-                                    continue;
-                                }
+                                LineNumber--;
+                                continue;
                             }
+                        }
 
 
-                    //now that the row is parsed out, and we've established whether it's a header row, we can decide if this is
-                    //a row that we can skip, based on the conditionals that were supplied by the user.
+                        //now that the row is parsed out, and we've established whether it's a header row, we can decide if this is
+                        //a row that we can skip, based on the conditionals that were supplied by the user.
 
-                    //   ____                _ _ _   _                   _     
-                    //  / ___|___  _ __   __| (_) |_(_) ___  _ __   __ _| |___ 
-                    // | |   / _ \| '_ \ / _` | | __| |/ _ \| '_ \ / _` | / __|
-                    // | |__| (_) | | | | (_| | | |_| | (_) | | | | (_| | \__ \
-                    //  \____\___/|_| |_|\__,_|_|\__|_|\___/|_| |_|\__,_|_|___/
-                    //                                                         
-                    if (NumberOfConditionals > 0)
-                    {
-
-                        bool skiprow = false;
-
-                        for (int ConditionalCounter = 0; ConditionalCounter < NumberOfConditionals; ConditionalCounter++)
+                        //   ____                _ _ _   _                   _     
+                        //  / ___|___  _ __   __| (_) |_(_) ___  _ __   __ _| |___ 
+                        // | |   / _ \| '_ \ / _` | | __| |/ _ \| '_ \ / _` | / __|
+                        // | |__| (_) | | | | (_| | | |_| | (_) | | | | (_| | \__ \
+                        //  \____\___/|_| |_|\__,_|_|\__|_|\___/|_| |_|\__,_|_|___/
+                        //                                                         
+                        if (NumberOfConditionals > 0)
                         {
 
-                            skiprow = false;
+                            bool skiprow = false;
 
-                            switch (BgData.ConditionalRules[ConditionalCounter].Item2)
+                            for (int ConditionalCounter = 0; ConditionalCounter < NumberOfConditionals; ConditionalCounter++)
                             {
-                                case "is":
-                                    if (fields[BgData.ConditionalRules[ConditionalCounter].Item1] != BgData.ConditionalRules[ConditionalCounter].Item3) skiprow = true;
-                                    break;
 
-                                case "is not":
-                                    if (fields[BgData.ConditionalRules[ConditionalCounter].Item1] == BgData.ConditionalRules[ConditionalCounter].Item3) skiprow = true;
-                                    break;
+                                skiprow = false;
 
-                                case "contains":
-                                    if (!fields[BgData.ConditionalRules[ConditionalCounter].Item1].Contains(BgData.ConditionalRules[ConditionalCounter].Item3)) skiprow = true;
-                                    break;
+                                switch (BgData.ConditionalRules[ConditionalCounter].Item2)
+                                {
+                                    case "is":
+                                        if (fields[BgData.ConditionalRules[ConditionalCounter].Item1] != BgData.ConditionalRules[ConditionalCounter].Item3) skiprow = true;
+                                        break;
 
-                                case "does not contain":
-                                    if (fields[BgData.ConditionalRules[ConditionalCounter].Item1].Contains(BgData.ConditionalRules[ConditionalCounter].Item3)) skiprow = true;
-                                    break;
+                                    case "is not":
+                                        if (fields[BgData.ConditionalRules[ConditionalCounter].Item1] == BgData.ConditionalRules[ConditionalCounter].Item3) skiprow = true;
+                                        break;
+
+                                    case "contains":
+                                        if (!fields[BgData.ConditionalRules[ConditionalCounter].Item1].Contains(BgData.ConditionalRules[ConditionalCounter].Item3)) skiprow = true;
+                                        break;
+
+                                    case "does not contain":
+                                        if (fields[BgData.ConditionalRules[ConditionalCounter].Item1].Contains(BgData.ConditionalRules[ConditionalCounter].Item3)) skiprow = true;
+                                        break;
+
+                                }
+
+                                if (skiprow) break;
 
                             }
 
-                            if (skiprow) break;
+                            if (skiprow) continue;
 
                         }
 
-                        if (skiprow) continue;
+                    }
 
+                    catch (MalformedLineException MLE)
+                    {
+                        MessageBox.Show(text: "EZPZTXT found a malformed field on Line #" + (LineNumber + 2).ToString() + ". This line will be skipped.", caption: "Malformed Line Exception", buttons: MessageBoxButtons.OK, icon: MessageBoxIcon.Error, defaultButton: MessageBoxDefaultButton.Button1, options: MessageBoxOptions.DefaultDesktopOnly);
+                        continue;
                     }
 
 
