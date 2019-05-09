@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FD197B2D-2C43-46CA-8910-E9BCF51EEAA4}</ProjectGuid>
+    <ProjectGuid>{3B0CDE5C-E5EE-413A-8278-903A77A86E64}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>EZPZTXT</RootNamespace>
@@ -153,6 +153,9 @@
     <Content Include="csv2txt.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>XCOPY "$(TargetDir)EZPZTXT.exe" "$(SolutionDir)\TextAnalysisLauncher\bin\Release\Apps\EZPZTXT\" /Y</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
